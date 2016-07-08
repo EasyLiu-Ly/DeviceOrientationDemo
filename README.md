@@ -15,3 +15,6 @@ This demo including three methods:
 
 3、using MahonyAHRS
 
+The following picture is the screenshot of the MainActivity,which display the attitude of the device using three different method.
+
+![image](https://github.com/EasyLiu-Ly/DeviceOrientationDemo/blob/master/DeviceOrientationDemo/device-2016-07-08-184755.png)
