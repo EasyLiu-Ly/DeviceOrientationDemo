@@ -33,7 +33,15 @@ public class MadgwickAHRS {
         Update(mGyro[0], mGyro[1], mGyro[2], mAcc[0], mAcc[1], mAcc[2], mMag[0], mMag[1], mMag[2]);
         //更新全局四元数
         angles[0] = (float) (-Math.atan2(2 * mQuaternion[1] * mQuaternion[2] - 2 * mQuaternion[0] * mQuaternion[3], -2 * mQuaternion[1] * mQuaternion[1] - 2 * mQuaternion[3] * mQuaternion[3] + 1) * 57.295780);  //偏航角，绕z轴转动
-        angles[1] = (float) (Math.asin(2 * mQuaternion[2] * mQuaternion[3] + 2 * mQuaternion[0] * mQuaternion[1]) * 57.295780); //俯仰角，绕x轴转动
+        if (Math.abs(angles[0])<=90){
+            angles[0]=-90-angles[0];
+        }else {
+            angles[0]=270-angles[0];
+            if (angles[0]>=360){
+                angles[0]=angles[0]-360;
+            }
+        }
+        angles[1] = (float) (-Math.asin(2 * mQuaternion[2] * mQuaternion[3] + 2 * mQuaternion[0] * mQuaternion[1]) * 57.295780); //俯仰角，绕x轴转动
         angles[2] = (float) (-Math.atan2(-2 * mQuaternion[0] * mQuaternion[2] + 2 * mQuaternion[1] * mQuaternion[3], -2 * mQuaternion[1] * mQuaternion[1] - 2 * mQuaternion[2] * mQuaternion[2] + 1) * 57.295780); //滚动角，绕y轴转动
     }
 
